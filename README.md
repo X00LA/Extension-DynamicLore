@@ -1,6 +1,6 @@
 # DynamicLore Extension for SillyTavern
 
-*Human Note: Completely created by AI: Claude 3.7 Sonnett with Reasoning. I don't know if or how this works. Try at your own risk.*
+*Human Note: Completely created by AI (Claude 3.7 Sonnett with Reasoning). I don't know if or how this works. Try at your own risk.*
 
 Automatically updates World Info/Lorebook entries based on your ongoing conversations, using your connected LLM to analyze chat content and suggest new or updated entries.
 
