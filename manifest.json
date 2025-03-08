@@ -1,0 +1,33 @@
+{
+  "name": "dynamic-lore",
+  "display_name": "DynamicLore",
+  "version": "1.0.0",
+  "description": "Automatically updates World Info using your connected LLM",
+  "author": "Your Name",
+  "js": "index.js",
+  "css": "style.css",
+  "requires": [],
+  "optional": [],
+  "settings": [
+    {
+      "id": "auto_analyze",
+      "type": "checkbox",
+      "label": "Auto-analyze conversations",
+      "default": true
+    },
+    {
+      "id": "analysis_interval",
+      "type": "number",
+      "label": "Analysis interval (messages)",
+      "default": 5,
+      "min": 1,
+      "max": 50
+    },
+    {
+      "id": "auto_approve",
+      "type": "checkbox",
+      "label": "Auto-approve high confidence entries",
+      "default": false
+    }
+  ]
+}

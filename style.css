@@ -1,0 +1,62 @@
+#dynamiclore_panel {
+    min-width: 600px;
+}
+
+.dynamiclore_controls {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.dynamiclore_update_proposal,
+.dynamiclore_entry_proposal {
+    background-color: var(--background-primary);
+    border: 1px solid var(--background-secondary);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.dynamiclore_proposal_header {
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--background-secondary);
+    padding-bottom: 5px;
+}
+
+.dynamiclore_proposal_content {
+    margin-bottom: 10px;
+}
+
+.dynamiclore_original,
+.dynamiclore_new,
+.dynamiclore_merged,
+.dynamiclore_description {
+    margin-bottom: 10px;
+}
+
+.dynamiclore_proposal_content pre {
+    white-space: pre-wrap;
+    background-color: var(--background-secondary);
+    padding: 5px;
+    border-radius: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.dynamiclore_proposal_actions {
+    display: flex;
+    gap: 10px;
+}
+
+.dynamiclore_accept {
+    background-color: var(--success);
+}
+
+.dynamiclore_reject {
+    background-color: var(--danger);
+}
+
+.dynamiclore_edit {
+    background-color: var(--warning);
+}
