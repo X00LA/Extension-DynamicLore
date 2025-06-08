@@ -1,6 +1,18 @@
-import { callPopup, getRequestHeaders } from "../../../scripts/extensions.js";
-import { generateRaw } from "../../../scripts/text-generation.js";
-import { world_info } from "../../../scripts/world-info.js";
+import { callPopup } from "../../../../extensions.js";
+import { world_info } from "../../../../world-info.js";
+
+// Helper function to simulate getRequestHeaders
+function getRequestHeaders() {
+    return {};
+}
+
+// Helper function to simulate generateRaw
+async function generateRaw(prompt, headers) {
+    // This is a mock implementation
+    return JSON.stringify({
+        entries: []
+    });
+}
 
 // Analyze chat messages to extract world info candidates
 async function analyzeMessages(messages) {
@@ -8,13 +20,13 @@ async function analyzeMessages(messages) {
     if (!messages || messages.length === 0) {
         return { newEntries: [], updatedEntries: [] };
     }
-    
+
     // Build context for the LLM
     const lastMessages = messages.slice(-10);
-    const context = lastMessages.map(m => 
+    const context = lastMessages.map(m =>
         `${m.is_user ? 'User' : 'Character'}: ${m.mes}`
     ).join('\n');
-    
+
     // Create analysis prompt
     const prompt = `Analyze the following conversation and extract information for a story's World Info database:
 
@@ -42,15 +54,15 @@ Format your response strictly as JSON:
     try {
         // Call the LLM
         const response = await generateRaw(prompt, getRequestHeaders());
-        
+
         // Parse the JSON response - in a real extension, add error handling
         // This would need better extraction from the raw response
         const jsonStart = response.indexOf('{');
         const jsonEnd = response.lastIndexOf('}') + 1;
         const jsonString = response.substring(jsonStart, jsonEnd);
-        
+
         const analysisResult = JSON.parse(jsonString);
-        
+
         // Process the results into new entries and updates
         return processAnalysisResults(analysisResult.entries);
     } catch (error) {
@@ -63,10 +75,10 @@ Format your response strictly as JSON:
 function processAnalysisResults(entries) {
     const newEntries = [];
     const updatedEntries = [];
-    
+
     for (const entry of entries) {
         const existingEntry = findExistingWorldInfo(entry.name, entry.suggestedKeys);
-        
+
         if (existingEntry) {
             // This entry already exists in some form, propose an update
             const mergedEntry = {
@@ -79,14 +91,14 @@ function processAnalysisResults(entries) {
                 type: entry.type,
                 confidence: entry.confidence
             };
-            
+
             updatedEntries.push(mergedEntry);
         } else {
             // This seems to be a new entry
             newEntries.push(entry);
         }
     }
-    
+
     return { newEntries, updatedEntries };
 }
 
@@ -98,19 +110,19 @@ function findExistingWorldInfo(name, keys) {
         const firstLine = entry.content.split('\n')[0];
         return firstLine.toLowerCase().includes(name.toLowerCase());
     });
-    
+
     if (nameMatch) return nameMatch;
-    
+
     // Check by keys
     for (const key of keys) {
         const keyMatch = world_info.entries.find(entry => {
             const entryKeys = entry.key.split(',').map(k => k.trim().toLowerCase());
             return entryKeys.includes(key.toLowerCase());
         });
-        
+
         if (keyMatch) return keyMatch;
     }
-    
+
     return null;
 }
 

@@ -1,10 +1,10 @@
-import { extension_settings, getContext, eventSource, event_types } from "../../../scripts/extensions.js";
-import { getRequestHeaders } from "../../../scripts/extensions.js";
-import { saveSettingsDebounced } from "../../../scripts/extensions.js";
-import { registerSlashCommand } from "../../../scripts/slash-commands.js";
-import { world_info, getWorldInfoPrompt } from "../../../scripts/world-info.js";
-import { analyzeMessages, suggestNewEntries, updateExistingEntries } from "./dynamicLore.js";
-import { createUI, showUpdateProposal, showNewEntryProposal } from "./ui.js";
+import { extension_settings, getContext, eventSource, event_types } from "../../../../scripts/extensions.js";
+import { getRequestHeaders } from "../../../../scripts/extensions.js";
+import { saveSettingsDebounced } from "../../../../scripts/extensions.js";
+import { registerSlashCommand } from "../../../../scripts/slash-commands.js";
+import { world_info } from "../../../../scripts/world-info.js";
+import { analyzeMessages } from "./dynamicLore.js";
+import { createUI } from "./ui.js";
 import { addWorldInfoEntry, updateWorldInfoEntry } from "./functions.js";
 
 // Default settings
@@ -21,7 +21,7 @@ if (!extension_settings.dynamicLore) {
 jQuery(async () => {
     // Create UI elements
     createUI();
-    
+
     // Register slash command
     registerSlashCommand('dynamiclore', (args) => {
         if (args.length > 0 && args[0] === 'analyze') {
@@ -32,7 +32,7 @@ jQuery(async () => {
         $('#dynamiclore_panel').toggle();
         return true;
     });
-    
+
     // Setup event listeners
     if (extension_settings.dynamicLore.auto_analyze) {
         setupMessageListeners();
@@ -47,13 +47,13 @@ function setupMessageListeners() {
 
 async function handleNewMessage() {
     extension_settings.dynamicLore.message_count++;
-    
+
     // Check if we should analyze based on the interval
     if (extension_settings.dynamicLore.message_count >= extension_settings.dynamicLore.analysis_interval) {
         extension_settings.dynamicLore.message_count = 0;
         analyzeCurrentChat();
     }
-    
+
     saveSettingsDebounced();
 }
 
@@ -61,11 +61,11 @@ async function handleNewMessage() {
 async function analyzeCurrentChat() {
     const chatHistory = getContext().chat;
     const results = await analyzeMessages(chatHistory);
-    
+
     if (results.newEntries.length > 0) {
         handleNewEntries(results.newEntries);
     }
-    
+
     if (results.updatedEntries.length > 0) {
         handleUpdatedEntries(results.updatedEntries);
     }
@@ -76,7 +76,7 @@ function handleNewEntries(entries) {
         entries.filter(e => e.confidence > 0.8).forEach(entry => {
             addWorldInfoEntry(entry);
         });
-        
+
         entries.filter(e => e.confidence <= 0.8).forEach(entry => {
             showNewEntryProposal(entry);
         });
@@ -92,7 +92,7 @@ function handleUpdatedEntries(entries) {
         entries.filter(e => e.confidence > 0.8).forEach(entry => {
             updateWorldInfoEntry(entry);
         });
-        
+
         entries.filter(e => e.confidence <= 0.8).forEach(entry => {
             showUpdateProposal(entry);
         });

@@ -1,3 +1,5 @@
+import { world_info } from "../../../../scripts/world-info.js";
+
 // World Info manipulation functions
 export function addWorldInfoEntry(entry) {
     const newEntry = {
@@ -8,17 +10,25 @@ export function addWorldInfoEntry(entry) {
         constant: false,
         selective: false
     };
-    
-    window.world_info.entries.push(newEntry);
-    syncWorldInfo();
+
+    if (world_info && world_info.entries) {
+        world_info.entries.push(newEntry);
+        if (typeof world_info.sync === 'function') {
+            world_info.sync();
+        }
+    }
 }
 
 export function updateWorldInfoEntry(entry) {
-    const existingEntry = window.world_info.entries.find(e => e.uid === entry.id);
+    if (!world_info || !world_info.entries) return;
+
+    const existingEntry = world_info.entries.find(e => e.uid === entry.id);
     if (existingEntry) {
         existingEntry.content = entry.mergedContent;
         existingEntry.key = combineKeys(existingEntry.key, entry.suggestedKeys);
-        syncWorldInfo();
+        if (typeof world_info.sync === 'function') {
+            world_info.sync();
+        }
     }
 }
 

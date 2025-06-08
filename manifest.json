@@ -4,10 +4,11 @@
   "version": "1.0.0",
   "description": "Automatically updates World Info using your connected LLM",
   "author": "Your Name",
-  "js": "index.js",
+  "js": "dist/index.js",
   "css": "style.css",
   "requires": [],
   "optional": [],
+  "extension_api_version": 1,
   "settings": [
     {
       "id": "auto_analyze",
