@@ -1,0 +1,207 @@
+{
+  "startedAt": "2026-09-07T13:56:38.871Z",
+  "phases": [
+    {
+      "name": "actual-loader-and-chat",
+      "passed": true,
+      "evidence": {
+        "initialized": true,
+        "chatKey": "[null,\"DL Smoke 2026-09-07T13-56-41-365Z.png\",\"DL Smoke 2026-09-07T13-56-41-365Z - 2026-09-07@21h56m41s369ms\"]",
+        "loaderScript": "/scripts/extensions/third-party/Extension-DynamicLore/index.js"
+      }
+    },
+    {
+      "name": "choose-book-ui",
+      "passed": true,
+      "evidence": {
+        "book": "DL Smoke 2026-09-07T13-56-41-365Z World"
+      }
+    },
+    {
+      "name": "analyze-and-edit-accept-ui",
+      "passed": true,
+      "evidence": {
+        "uid": 0,
+        "content": "Haven has two moons. Its harbor is called Silver Quay.",
+        "historySaved": true,
+        "backendCalls": 1
+      }
+    },
+    {
+      "name": "reload-from-disk",
+      "passed": true,
+      "evidence": {
+        "historyCount": 1,
+        "acceptedProposalRestored": true
+      }
+    },
+    {
+      "name": "update-responsive-and-undo",
+      "passed": true,
+      "evidence": {
+        "sameUid": true,
+        "exactBookRestored": true,
+        "undoMetadataPersisted": true
+      }
+    },
+    {
+      "name": "auto-off-on-real-events",
+      "passed": true,
+      "evidence": {
+        "offRequests": 0,
+        "onRequests": 1,
+        "eventSource": "real ST eventSource MESSAGE_RECEIVED/GENERATION_ENDED",
+        "generateRawUnchanged": true
+      }
+    },
+    {
+      "name": "metadata-save-failure-and-ui-retry",
+      "passed": true,
+      "evidence": {
+        "synthetic500": 1,
+        "bookSaved": true,
+        "receiptRetainedThenCleared": true,
+        "chatHistoryVerified": true,
+        "errorAfterRetry": ""
+      }
+    },
+    {
+      "name": "slash-command-real-executor-and-send-button",
+      "passed": true,
+      "evidence": {
+        "executor": {
+          "pipe": "1 suggestion(s) ready for review in DL Smoke 2026-09-07T13-56-41-365Z World."
+        },
+        "executorBackendCalls": 1,
+        "sendButtonBackendCalls": 1
+      }
+    },
+    {
+      "name": "missing-book-refusal",
+      "passed": true,
+      "evidence": {
+        "missing": "DL Smoke 2026-09-07T13-56-41-365Z World Missing",
+        "refused": true,
+        "error": "DynamicLore: read book \"DL Smoke 2026-09-07T13-56-41-365Z World Missing\": DynamicLore: check existence of book \"DL Smoke 2026-09-07T13-56-41-365Z World Missing\": Book does not exist on the server",
+        "noBackendCall": true,
+        "noFile": true
+      }
+    },
+    {
+      "name": "open-world-info-ui",
+      "passed": true,
+      "evidence": {
+        "modalClosed": true,
+        "worldInfoDrawerOpen": true,
+        "selectedBook": "DL Smoke 2026-09-07T13-56-41-365Z World"
+      }
+    },
+    {
+      "name": "backend-failure",
+      "passed": true,
+      "evidence": {
+        "expectedFailure": true,
+        "message": "DynamicLore: generate raw response: Got response status 503",
+        "bookUnchanged": true,
+        "mockScope": "browser HTTP route only; ctx.generateRaw remains real"
+      }
+    }
+  ],
+  "extensionErrors": [
+    {
+      "phase": "metadata-save-failure-and-ui-retry",
+      "type": "console",
+      "message": "Error: Internal Server Error\n    at saveChat (http://127.0.0.1:8127/script.js:7397:19)\n    at async saveChatConditional (http://127.0.0.1:8127/script.js:9368:13)\n    at async Object.saveMetadata (http://127.0.0.1:8127/script.js:9349:12)\n    at async Object.persistMetadata (http://127.0.0.1:8127/scripts/extensions/third-party/Extension-DynamicLore/src/host.js:300:13)\n    at async persist (http://127.0.0.1:8127/scripts/extensions/third-party/Extension-DynamicLore/src/runtime.js:72:57)\n    at async persistReceipt (http://127.0.0.1:8127/scripts/extensions/third-party/Extension-DynamicLore/src/runtime.js:89:13)\n    at async http://127.0.0.1:8127/scripts/extensions/third-party/Extension-DynamicLore/src/runtime.js:223:13",
+      "location": {
+        "url": "http://127.0.0.1:8127/script.js",
+        "lineNumber": 7417,
+        "columnNumber": 16
+      }
+    }
+  ],
+  "backendCalls": [
+    {
+      "phase": "analyze-and-edit-accept-ui",
+      "status": 200,
+      "url": "http://127.0.0.1:8127/api/backends/chat-completions/generate"
+    },
+    {
+      "phase": "update-responsive-and-undo",
+      "status": 200,
+      "url": "http://127.0.0.1:8127/api/backends/chat-completions/generate"
+    },
+    {
+      "phase": "auto-off-on-real-events",
+      "status": 200,
+      "url": "http://127.0.0.1:8127/api/backends/chat-completions/generate"
+    },
+    {
+      "phase": "metadata-save-failure-and-ui-retry",
+      "status": 200,
+      "url": "http://127.0.0.1:8127/api/backends/chat-completions/generate"
+    },
+    {
+      "phase": "slash-command-real-executor-and-send-button",
+      "status": 200,
+      "url": "http://127.0.0.1:8127/api/backends/chat-completions/generate"
+    },
+    {
+      "phase": "slash-command-real-executor-and-send-button",
+      "status": 200,
+      "url": "http://127.0.0.1:8127/api/backends/chat-completions/generate"
+    },
+    {
+      "phase": "backend-failure",
+      "status": 503,
+      "url": "http://127.0.0.1:8127/api/backends/chat-completions/generate"
+    }
+  ],
+  "sourceHashes": {
+    "index.js": "b4429a02ca80dc8a0f06c8576f948eaf4677ec5fc85f64425c3eb5689faa209c",
+    "src/ui.js": "5c7c4ac099fe200a36b62729622bf7a2ad0bfd5aa47d18b0696dd2ed114e7f1f",
+    "src/ui-values.js": "f0c34d167010c6fa682fca641359c32dbce048496b5a49795c03b1ffa080dcf0",
+    "src/runtime.js": "b735e0b80c07b98fb4949c9447d161295bb502dbf5c8cc7f91d15f885493dbd2",
+    "src/host.js": "ab5aeab5d569164f6d5b3859fb053a2b600c4f2d9957d4aecb566dca57688ea0",
+    "src/core.js": "de1d68e5176e6203173de2fe4ca79e6412171543a1a529c2d41cb7450496517e",
+    "src/commands.js": "26fe88f0b7a4b89a3f485ec1f8de62f65b1d5508fda72c3b4df0a36dd5eefbaf",
+    "style.css": "d911f172c3a6f237c8d104ed3a03b6558ea69d2772585d2ed600076dcf5abfd6"
+  },
+  "session": {
+    "run": "DL Smoke 2026-09-07T13-56-41-365Z",
+    "avatar": "DL Smoke 2026-09-07T13-56-41-365Z.png",
+    "book": "DL Smoke 2026-09-07T13-56-41-365Z World",
+    "chatId": "DL Smoke 2026-09-07T13-56-41-365Z - 2026-09-07@21h56m41s369ms"
+  },
+  "screenshots": {
+    "desktop": "dynamiclore-desktop.png",
+    "mobile": "dynamiclore-mobile-375.png",
+    "mobileReview": "dynamiclore-mobile-review-375.png"
+  },
+  "mobileLayout": {
+    "viewport": 375,
+    "dialog": {
+      "left": 6,
+      "right": 369,
+      "width": 363
+    },
+    "body": {
+      "clientWidth": 361,
+      "scrollWidth": 361
+    },
+    "overflowingControls": []
+  },
+  "retryErrorState": "",
+  "passed": true,
+  "finishedAt": "2026-09-07T13:56:50.966Z",
+  "sourceHashesAtFinish": {
+    "index.js": "b4429a02ca80dc8a0f06c8576f948eaf4677ec5fc85f64425c3eb5689faa209c",
+    "src/ui.js": "5c7c4ac099fe200a36b62729622bf7a2ad0bfd5aa47d18b0696dd2ed114e7f1f",
+    "src/ui-values.js": "f0c34d167010c6fa682fca641359c32dbce048496b5a49795c03b1ffa080dcf0",
+    "src/runtime.js": "b735e0b80c07b98fb4949c9447d161295bb502dbf5c8cc7f91d15f885493dbd2",
+    "src/host.js": "ab5aeab5d569164f6d5b3859fb053a2b600c4f2d9957d4aecb566dca57688ea0",
+    "src/core.js": "de1d68e5176e6203173de2fe4ca79e6412171543a1a529c2d41cb7450496517e",
+    "src/commands.js": "26fe88f0b7a4b89a3f485ec1f8de62f65b1d5508fda72c3b4df0a36dd5eefbaf",
+    "style.css": "d911f172c3a6f237c8d104ed3a03b6558ea69d2772585d2ed600076dcf5abfd6"
+  },
+  "sourceChangedDuringRun": []
+}

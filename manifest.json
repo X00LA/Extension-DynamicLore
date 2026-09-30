@@ -1,35 +1,16 @@
 {
   "name": "dynamic-lore",
   "display_name": "DynamicLore",
-  "version": "1.1.0",
-  "description": "Automatically updates World Info using your connected LLM",
-  "author": "AugielsHere, X00LA",
-  "js": "dist/index.js",
+  "version": "3.0.0",
+  "description": "Turn conversations into reviewed, editable World Info updates with chat-scoped history and undo.",
+  "author": "LiweiDonVee; original concept by AugieIsHere, upstream fork by X00LA",
+  "js": "index.js",
   "css": "style.css",
   "homePage": "https://github.com/X00LA/Extension-DynamicLore",
   "requires": [],
   "optional": [],
   "extension_api_version": 1,
-  "settings": [
-    {
-      "id": "auto_analyze",
-      "type": "checkbox",
-      "label": "Auto-analyze conversations",
-      "default": true
-    },
-    {
-      "id": "analysis_interval",
-      "type": "number",
-      "label": "Analysis interval (messages)",
-      "default": 5,
-      "min": 1,
-      "max": 50
-    },
-    {
-      "id": "auto_approve",
-      "type": "checkbox",
-      "label": "Auto-approve high confidence entries",
-      "default": false
-    }
-  ]
+  "minimum_client_version": "1.18.0",
+  "homePage": "https://github.com/LiweiDonVee/Extension-DynamicLore",
+  "loading_order": 100
 }

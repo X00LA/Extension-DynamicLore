@@ -1,0 +1,11 @@
+{
+  "entries": [
+    {
+      "name": "Haven",
+      "content": "Haven has two moons.",
+      "keywords": ["Haven"],
+      "type": "location",
+      "confidence": 0.95
+    }
+  ]
+}
