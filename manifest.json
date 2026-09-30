@@ -6,6 +6,7 @@
   "author": "LiweiDonVee; original concept by AugieIsHere, upstream fork by X00LA",
   "js": "index.js",
   "css": "style.css",
+  "homePage": "https://github.com/X00LA/Extension-DynamicLore",
   "requires": [],
   "optional": [],
   "extension_api_version": 1,
